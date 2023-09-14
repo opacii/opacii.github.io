@@ -47,10 +47,18 @@ h2 {
   background-color: #f8f8f8;
 }
 
+.book_biblio a {
+  color: inherit;
+}
+
 .book_biblio.available {
   border-color: #4c4;
   color: #4f4f4f;
   background-color: #fdfdfd;
+}
+
+.book_biblio.audible {
+  border-color: #FF8909;
 }
 
 .book_biblio.selected {
