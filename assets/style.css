@@ -61,6 +61,10 @@ h2 {
   border-color: #FF8909;
 }
 
+.book_biblio.sbnubo {
+  border-color: #4169E1;
+}
+
 .book_biblio.selected {
   background-color: #e5ffe5;
   color: #4f4f4f;
