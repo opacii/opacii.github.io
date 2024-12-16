@@ -2,7 +2,7 @@ body {
   color: #222;
   background: #fafafa;
   font-size: 10px !important;
-  font-family: 'Lucida Grande', Verdana, sans-serif !important;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace !important;
   padding: 1em 2em;
   margin: auto 1em;
   border: 1px solid #d5d8db;
@@ -18,20 +18,20 @@ a {
 h2 {
   background-color: #29a;
   color: #f5f5f5 !important;
-  padding: 10px 15px;
+  padding: 10px 12px;
   margin-top: 0px;
+  font-size: 14px !important;
+  border-radius: 30px 20px;
 }
 
 .book_header {
-  background-color: #b2e5ed;
   padding: 2px 10px;
   color: #333;
 }
 
 .book_header.disabled {
-  background-color: #e6e6d3;
   font-weight: lighter !important;
-  color: #7a7a7a;
+  color: #b9b9b9;
 }
 
 .book_list {
@@ -39,12 +39,13 @@ h2 {
 }
 
 .book_biblio {
-  margin: 0.3em 0em 0.3em 1em;
-  padding: 0px 0 5px 10px;
-  border-right: 5px solid #c44;
-  font-size: 11px;
-  color: #c3c3c3;
-  background-color: #f8f8f8;
+  border-left: 3px solid #ffe692;
+  font-size: 9px;
+  color: #a5a5a5;
+}
+
+.book_biblio .desc {
+  padding-left: 4px;
 }
 
 .book_biblio a {
@@ -52,9 +53,7 @@ h2 {
 }
 
 .book_biblio.available {
-  border-color: #4c4;
-  color: #4f4f4f;
-  background-color: #fdfdfd;
+  border-color: #b2e592;
 }
 
 .book_biblio.audible {
@@ -62,18 +61,94 @@ h2 {
 }
 
 .book_biblio.sbnubo {
-  border-color: #4169E1;
+  border-color: #6c90fc;
 }
 
 .book_biblio.selected {
   background-color: #e5ffe5;
-  color: #4f4f4f;
+  color: #222;
 }
 
 a.source {
-  margin-right: 5px;
+  margin-right: 3px;
   text-decoration: none;
   color: #222;
+}
+
+#footer {
+  font-size: 9px;
+  color: #aaa;
+  text-align: center;
+  margin-top:20px;
+}
+
+table.table {
+  margin-bottom: 0;
+  margin-left: 12px;
+  width: 98%;
+  --bs-table-hover-bg: #f6fff6; /* on mouseover */
+}
+
+.table td {
+  border-bottom: 0px;
+}
+
+td.biblio {
+  font-size: 9px;
+  width: 220px;
+}
+
+td.colloc {
+  display: none;
+  width: 250px;
+}
+
+.book_header h5 {
+  font-size: 14px;
+  line-height: 1.5;
+  padding-top: 7px;
+}
+
+.book_header small {
+  margin-left: 10px;
+}
+
+.pull-right {
+  float: right;
+}
+
+.icon-links {
+  font-size: 9px;
+  padding-top: 4px;
+  color: #7a7a7a;
+}
+
+.icon-links img {
+  display: inline;
+}
+
+span.cache {
+  font-weight: lighter;
+  color: #ccc;
+}
+
+.book_id {
+  margin-right: 5px;
+  color: #c3c3c3;
+  font-size: 8px;
+}
+
+.book_status {
+  font-weight: bold;
+  color: darkred;
+  margin-right: 6px;
+}
+
+input#search {
+  font-size: 9px;
+  margin: 10px 0;
+  padding: 4px 12px;
+  border-radius: 30px 25px;
 }
 
 /* Deprecated
@@ -97,60 +172,3 @@ a.source {
   padding-right: 1px;
 }
 */
-
-#footer {
-  font-size: 9pt;
-  color: #666;
-  text-align: center;
-  margin-top:20px;
-}
-
-table.table {
-  margin-bottom: 0;
-}
-
-.table td {
-  border-bottom: 0px;
-}
-
-td.biblio {
-  width: 200px;
-}
-
-td.colloc {
-  display: none;
-  width: 200px;
-}
-
-.book_header h5 {
-  font-size: 15px;
-  line-height: 1.5;
-  padding-top: 8px;
-}
-
-.book_header small {
-  margin-left: 6px;
-}
-
-.pull-right {
-  float: right;
-}
-
-.icon-links {
-  padding-top: 3px;
-  color: #7a7a7a;
-}
-
-.icon-links a {
-  padding-left: 2px;
-  color: #7a7a7a;
-}
-
-span.cache {
-  font-weight: lighter;
-  color: #ccc;
-}
-
-input#search {
-  margin: 10px 0;
-}
