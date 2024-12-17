@@ -2,24 +2,45 @@ $(document).ready(function () {
 
   // Toggle book items
   $('.book_header').click(function(){
-    $(this).parent().find('.book_biblio').not($('.selected')).toggle(100);
+    if($('body.selected').length > 0) return; // Don't toggle search results
+    $(this).parent().find('.book_biblio').toggle(100);
   });
 
-  // Select book item
+  // Select book biblio item
   $('.book_biblio').click(function(){
     $(this).toggleClass('selected');
+    // Select parent when at least a child is selected
+    let book_list = $(this).closest('.book_list');
+    if($(book_list).find('.book_biblio.selected').length > 0) {
+      book_list.addClass('selected');
+    } else {
+      book_list.removeClass('selected');
+    }
   });
 
-  // Toggle print view
-  $('h2').click(function(){
-    $('.book_header').toggle();
-    $('.search_note').toggle();
-    $('.cache').toggle();
-    $('.book_biblio').not($('.selected')).hide(100);
-    $('.book_biblio.selected').show();
-    $('.book_biblio.selected').find('.colloc').toggle();
-    $('.book_biblio.selected').find('a').toggle();
-    $('#footer').toggle();
+  // Select index view
+  $('.filters .selected').click(function(){
+    $('body').removeClass('expanded');
+    $('body').removeClass('collapsed');
+    $('body').addClass('selected');
+    $('.book_biblio:not(.selected)').hide(100);
+  });
+  $('.filters .expanded').click(function(){
+    $('body').removeClass('selected');
+    $('body').removeClass('collapsed');
+    $('body').addClass('expanded');
+    $('.book_biblio').show(100);
+  });
+  $('.filters .collapsed').click(function(){
+    $('body').removeClass('expanded');
+    $('body').removeClass('selected');
+    $('body').addClass('collapsed');
+    $('.book_biblio').hide(100);
+  });
+
+  // Show book links and ID onmouseover
+  $(".book_header").hover(function () {
+    $(this).toggleClass("hoving");
   });
 
   // Search - BEGIN
@@ -34,10 +55,32 @@ $(document).ready(function () {
   });
 
   const search = function() {
-    $('.book_biblio').removeClass('selected');
     const keyword = $("input[name='keyword']").val();
     if (keyword.length < 3) return;
-    $('.book_biblio:contains("' + keyword + '")').toggleClass('selected');
+
+    // Clean views
+    $('.book_list').removeClass('selected');
+    $('.book_biblio').removeClass('selected');
+    $('.book_biblio').hide();
+    $('body').removeClass('expanded');
+    $('body').removeClass('collapsed');
+    $('body').addClass('selected');
+
+    // Show results
+    $('.book_biblio:contains("' + keyword + '")').each(function() {
+      $(this).addClass('selected');
+      $(this).show();
+
+      // Select parent when at least a child is selected
+      let book_list = $(this).closest('.book_list')
+      if($(book_list).find('.book_biblio.selected').length > 0) {
+        book_list.addClass('selected');
+        book_list.show();
+      } else {
+        book_list.removeClass('selected');
+        book_list.hide();
+      }
+    });
   };
 
   $("input[name='keyword']").on('input', search);

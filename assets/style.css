@@ -8,6 +8,7 @@ body {
   border: 1px solid #d5d8db;
   border-top: none;
   border-bottom: none;
+  overflow-y: scroll; /* Show vertical scrollbar */
 }
 
 a {
@@ -22,26 +23,33 @@ h2 {
   margin-top: 0px;
   font-size: 14px !important;
   border-radius: 30px 20px;
-}
-
-.book_header {
-  padding: 2px 10px;
-  color: #333;
-}
-
-.book_header.disabled {
-  font-weight: lighter !important;
-  color: #b9b9b9;
+  cursor: none;
 }
 
 .book_list {
   background-color: #fff;
 }
 
+/* Book biblio */
+
 .book_biblio {
   border-left: 3px solid #ffe692;
   font-size: 9px;
   color: #a5a5a5;
+  display: none;
+  cursor: crosshair;
+}
+
+body.selected .book_biblio:not(.selected) {
+  display: none;
+}
+
+.expanded .book_biblio {
+  display: table-row;
+}
+
+.collapsed .book_biblio {
+  display: none;
 }
 
 .book_biblio .desc {
@@ -69,17 +77,16 @@ h2 {
   color: #222;
 }
 
+body.selected .book_biblio.selected {
+  display: table-row;
+  background-color: inherit;
+  color: #5a5a5a;
+}
+
 a.source {
   margin-right: 3px;
   text-decoration: none;
   color: #222;
-}
-
-#footer {
-  font-size: 9px;
-  color: #aaa;
-  text-align: center;
-  margin-top:20px;
 }
 
 table.table {
@@ -98,19 +105,117 @@ td.biblio {
   width: 220px;
 }
 
-td.colloc {
+body.selected td.biblio {
+  width: 450px;
+}
+
+body:not(.selected) .colloc {
   display: none;
-  width: 250px;
+}
+
+body.selected .colloc {
+  display: inline-block;
+  width: 280px;
+  margin-right: 5px;
+}
+
+ /* Book header */
+
+.book_header {
+  padding: 2px 10px;
+  color: #333;
 }
 
 .book_header h5 {
   font-size: 14px;
   line-height: 1.5;
   padding-top: 7px;
+  cursor: crosshair;
+}
+
+.book_header.hoving h5 {
+  background-color: #fbfbfb;
 }
 
 .book_header small {
   margin-left: 10px;
+}
+
+body.selected .book_list:not(.selected) .book_header {
+  display: none;
+}
+
+body.selected .book_header h5 {
+  cursor: none;
+}
+
+.book_header.disabled {
+  font-weight: lighter !important;
+  color: #b9b9b9;
+}
+
+/* Toolbar, search, filters */
+
+.toolbar {
+  margin: 10px 0;
+}
+
+input#search {
+  font-size: 10px;
+  margin-left: 6px;
+  padding: 4px 12px;
+  border-radius: 30px 25px;
+  width: 60%;
+  display: inline;
+  border: 1px solid #d5d8db;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
+.filters {
+  padding: 4px 12px;
+  display: inline;
+}
+
+.filters span {
+  border: 1px solid #d5d8db;
+  border-radius: 20px 10px;
+  padding: 5px;
+  font-weight: bold;
+  cursor: crosshair;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.filters span:hover {
+  border: 1px solid #8a8a8a;
+  border-radius: 8px 8px;
+}
+
+.filters span.selected {
+  color: #05d005;
+}
+
+body.collapsed .filters span.collapsed {
+  border-radius: 15px 30px;
+  border: 1px solid #d5d8db;
+  background-color: #c5f8ff;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  cursor: none;
+}
+
+body.expanded .filters span.expanded {
+  border-radius: 15px 20px;
+  border: 1px solid #d5d8db;
+  background-color: #c5f8ff;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  cursor: none;
+}
+
+body.selected .filters span.selected {
+  border-radius: 10px 25px;
+  border: 1px solid #d5d8db;
+  background-color: #c5f8ff;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  cursor: none;
 }
 
 .pull-right {
@@ -121,6 +226,15 @@ td.colloc {
   font-size: 9px;
   padding-top: 4px;
   color: #7a7a7a;
+  display: none;
+}
+
+.hoving .icon-links {
+  display: inline;
+}
+
+body.selected .icon-links {
+  display: none;
 }
 
 .icon-links img {
@@ -132,23 +246,34 @@ span.cache {
   color: #ccc;
 }
 
+.book_count {
+  color: #29a;
+  margin-right: 6px;
+  font-size: 10px;
+}
+
 .book_id {
-  margin-right: 5px;
-  color: #c3c3c3;
-  font-size: 8px;
+  color: #737373;
+  margin-right: 6px;
+  font-size: 10px;
 }
 
 .book_status {
-  font-weight: bold;
   color: darkred;
+  font-weight: bold;
   margin-right: 6px;
 }
 
-input#search {
+#footer {
   font-size: 9px;
-  margin: 10px 0;
-  padding: 4px 12px;
-  border-radius: 30px 25px;
+  color: #aaa;
+  text-align: center;
+  margin-top:20px;
+  cursor: none;
+}
+
+body.selected #footer {
+  display: none;
 }
 
 /* Deprecated
