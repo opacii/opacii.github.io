@@ -33,7 +33,7 @@ body.guest h2 {
 /* Toolbar, search, filters */
 
 .toolbar {
-  margin: 5px 0;
+  margin: 7px 0;
   float: right;
 }
 
@@ -103,7 +103,7 @@ body.selected.guest .filters span.selected {
   float: right;
 }
 
- /* Book header */
+/* Book header */
 
 .book_header {
   padding: 2px 10px;
@@ -149,10 +149,6 @@ body.selected .book_header h5 {
 
 .hoving .icon-links {
   display: inline;
-}
-
-body.selected .icon-links {
-  display: none;
 }
 
 .icon-links img {
